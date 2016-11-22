@@ -1,4 +1,4 @@
-COMPILER_DIR=../compiler
+COMPILER_DIR=../../../compiler/master/src
 FORMATS_KSY_DIR=formats
 FORMATS_COMPILED_DIR=compiled
 
