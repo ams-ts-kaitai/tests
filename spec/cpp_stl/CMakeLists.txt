@@ -21,12 +21,15 @@ set(SPEC_SOURCES
 	test_repeat_n_strz_double.cpp
 	test_term_strz.cpp
 	test_enum_0.cpp
+	test_enum_1.cpp
 	test_enum_if.cpp
+	test_enum_for_unknown_id.cpp
 	test_expr_0.cpp
 	test_expr_1.cpp
 	test_expr_2.cpp
 	test_expr_3.cpp
 	test_expr_mod.cpp
+	test_expr_enum.cpp
 	test_expr_io_eof.cpp
 	test_expr_io_pos.cpp
 	test_process_xor_const.cpp
@@ -40,9 +43,12 @@ set(SPEC_SOURCES
 	test_position_to_end.cpp
 	test_str_eos.cpp
 	test_type_int_unary_op.cpp
+	test_type_ternary.cpp
+	test_type_ternary_opaque.cpp
 	test_process_to_user.cpp
 	test_repeat_until_s4.cpp
 	test_default_big_endian.cpp
+	test_default_endian_mod.cpp
 	test_repeat_until_complex.cpp
 	test_instance_std_array.cpp
 	test_instance_user_array.cpp
@@ -61,12 +67,18 @@ set(SPEC_SOURCES
 	test_switch_manual_int_size_else.cpp
 	test_switch_manual_int_size_eos.cpp
 	test_switch_manual_str.cpp
+	test_switch_integers.cpp
 	test_nav_root.cpp
 	test_nav_parent.cpp
+	test_nav_parent2.cpp
+	test_nav_parent3.cpp
 	test_nav_parent_switch.cpp
 	test_multiple_use.cpp
 	test_str_encodings.cpp
+	test_str_encodings_default.cpp
 	test_zlib_with_header_78.cpp
+	test_opaque_external_type.cpp
+	test_optional_id.cpp
 )
 
 set(KS_SOURCES
@@ -82,12 +94,15 @@ set(KS_SOURCES
 	${KS_PATH}/repeat_n_strz_double.cpp
 	${KS_PATH}/term_strz.cpp
 	${KS_PATH}/enum_0.cpp
+	${KS_PATH}/enum_1.cpp
 	${KS_PATH}/enum_if.cpp
+	${KS_PATH}/enum_for_unknown_id.cpp
 	${KS_PATH}/expr_0.cpp
 	${KS_PATH}/expr_1.cpp
 	${KS_PATH}/expr_2.cpp
 	${KS_PATH}/expr_3.cpp
 	${KS_PATH}/expr_mod.cpp
+	${KS_PATH}/expr_enum.cpp
 	${KS_PATH}/expr_io_eof.cpp
 	${KS_PATH}/expr_io_pos.cpp
 	${KS_PATH}/process_xor_const.cpp
@@ -101,9 +116,12 @@ set(KS_SOURCES
 	${KS_PATH}/position_to_end.cpp
 	${KS_PATH}/str_eos.cpp
 	${KS_PATH}/type_int_unary_op.cpp
+	${KS_PATH}/type_ternary.cpp
+	${KS_PATH}/type_ternary_opaque.cpp
 	${KS_PATH}/process_to_user.cpp
 	${KS_PATH}/repeat_until_s4.cpp
 	${KS_PATH}/default_big_endian.cpp
+	${KS_PATH}/default_endian_mod.cpp
 	${KS_PATH}/repeat_until_complex.cpp
 	${KS_PATH}/instance_std_array.cpp
 	${KS_PATH}/instance_user_array.cpp
@@ -122,12 +140,18 @@ set(KS_SOURCES
 	${KS_PATH}/switch_manual_int_size_else.cpp
 	${KS_PATH}/switch_manual_int_size_eos.cpp
 	${KS_PATH}/switch_manual_str.cpp
+	${KS_PATH}/switch_integers.cpp
 	${KS_PATH}/nav_root.cpp
 	${KS_PATH}/nav_parent.cpp
+	${KS_PATH}/nav_parent2.cpp
+	${KS_PATH}/nav_parent3.cpp
 	${KS_PATH}/nav_parent_switch.cpp
 	${KS_PATH}/multiple_use.cpp
 	${KS_PATH}/str_encodings.cpp
+	${KS_PATH}/str_encodings_default.cpp
 	${KS_PATH}/zlib_with_header_78.cpp
+	${KS_PATH}/opaque_external_type.cpp
+	${KS_PATH}/optional_id.cpp
 )
 
 set(RUNTIME_SOURCES
