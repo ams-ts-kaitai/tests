@@ -40,7 +40,7 @@ javac -cp "$JAVA_CLASSES_DIR" \
 # 3. Test specs
 # If this fails to compile as a group, try compiling individual files
 echo "run-java: compiling test specs"
-javac -cp "$JAVA_CLASSES_DIR:$JAVA_TESTNG_JAR" \
+javac -encoding UTF-8 -cp "$JAVA_CLASSES_DIR:$JAVA_TESTNG_JAR" \
 	"$JAVA_SPEC_DIR/"*.java \
 	-d "$JAVA_CLASSES_DIR" || {
 	echo "run-java: some test specs failed to compile, trying one by one"
