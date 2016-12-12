@@ -2,4 +2,4 @@
 
 . ./config
 
-rspec -I compiled/ruby -I "$RUBY_RUNTIME_DIR"
+rspec.bat -I compiled/ruby -I "$RUBY_RUNTIME_DIR"
