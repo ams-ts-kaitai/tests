@@ -10,6 +10,9 @@ JAVA_COMPILE_LOG_DIR=$(pwd)/"$TEST_OUT_DIR"/java/compile_log
 
 export PATH="${PATH}:/C/Program Files/Java/jdk1.8/bin"
 
+mvn -DgroupId=org.testng	-DartifactId=testng		-Dversion=6.9.10	dependency:get > /dev/null
+mvn -DgroupId=com.beust		-DartifactId=jcommander	-Dversion=1.48		dependency:get > /dev/null
+
 # Compile everything:
 rm -f "$JAVA_BUILD_FAILS"
 rm -rf "$JAVA_COMPILE_LOG_DIR"
