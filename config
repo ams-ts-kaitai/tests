@@ -9,6 +9,6 @@ JAVASCRIPT_RUNTIME_DIR=../runtime/javascript
 JAVASCRIPT_MODULES_DIR=node_modules
 PERL_RUNTIME_DIR=../runtime/perl
 PYTHON_RUNTIME_DIR=../runtime/python
-RUBY_RUNTIME_DIR=../runtime/ruby/lib
+RUBY_RUNTIME_DIR="/C/Program Files (x86)/kaitai-struct/runtime/ruby/lib"
 
 TEST_OUT_DIR=test_out
