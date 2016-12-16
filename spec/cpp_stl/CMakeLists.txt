@@ -15,6 +15,8 @@ set(SPEC_SOURCES
 	test_instance_std.cpp
 	test_repeat_eos_u4.cpp
 	test_if_struct.cpp
+	test_if_values.cpp
+	test_if_instances.cpp
 	test_position_abs.cpp
 	test_position_in_seq.cpp
 	test_repeat_n_strz.cpp
@@ -79,6 +81,7 @@ set(SPEC_SOURCES
 	test_zlib_with_header_78.cpp
 	test_opaque_external_type.cpp
 	test_optional_id.cpp
+	test_opaque_external_type_02_parent.cpp
 )
 
 set(KS_SOURCES
@@ -88,6 +91,8 @@ set(KS_SOURCES
 	${KS_PATH}/instance_std.cpp
 	${KS_PATH}/repeat_eos_u4.cpp
 	${KS_PATH}/if_struct.cpp
+	${KS_PATH}/if_values.cpp
+	${KS_PATH}/if_instances.cpp
 	${KS_PATH}/position_abs.cpp
 	${KS_PATH}/position_in_seq.cpp
 	${KS_PATH}/repeat_n_strz.cpp
@@ -152,6 +157,8 @@ set(KS_SOURCES
 	${KS_PATH}/zlib_with_header_78.cpp
 	${KS_PATH}/opaque_external_type.cpp
 	${KS_PATH}/optional_id.cpp
+	${KS_PATH}/opaque_external_type_02_parent.cpp
+	${KS_PATH}/opaque_external_type_02_child.cpp
 )
 
 set(RUNTIME_SOURCES
