@@ -19,4 +19,3 @@ instances:
     enum: animal
   pet_4:
     value: "pet_1 == animal::cat ? animal::dog : animal::chicken"
-    enum: animal
