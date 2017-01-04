@@ -26,6 +26,7 @@ set(SPEC_SOURCES
 	test_enum_1.cpp
 	test_enum_if.cpp
 	test_enum_for_unknown_id.cpp
+	test_enum_of_value_inst.cpp
 	test_expr_0.cpp
 	test_expr_1.cpp
 	test_expr_2.cpp
@@ -69,7 +70,9 @@ set(SPEC_SOURCES
 	test_switch_manual_int_size_else.cpp
 	test_switch_manual_int_size_eos.cpp
 	test_switch_manual_str.cpp
+	test_switch_manual_str_else.cpp
 	test_switch_integers.cpp
+	test_switch_multi_bool_ops.cpp
 	test_nav_root.cpp
 	test_nav_parent.cpp
 	test_nav_parent2.cpp
@@ -82,6 +85,9 @@ set(SPEC_SOURCES
 	test_opaque_external_type.cpp
 	test_optional_id.cpp
 	test_opaque_external_type_02_parent.cpp
+	test_non_standard.cpp
+	test_debug_0.cpp
+	test_debug_enum_name.cpp
 )
 
 set(KS_SOURCES
@@ -102,6 +108,7 @@ set(KS_SOURCES
 	${KS_PATH}/enum_1.cpp
 	${KS_PATH}/enum_if.cpp
 	${KS_PATH}/enum_for_unknown_id.cpp
+	${KS_PATH}/enum_of_value_inst.cpp
 	${KS_PATH}/expr_0.cpp
 	${KS_PATH}/expr_1.cpp
 	${KS_PATH}/expr_2.cpp
@@ -145,7 +152,9 @@ set(KS_SOURCES
 	${KS_PATH}/switch_manual_int_size_else.cpp
 	${KS_PATH}/switch_manual_int_size_eos.cpp
 	${KS_PATH}/switch_manual_str.cpp
+	${KS_PATH}/switch_manual_str_else.cpp
 	${KS_PATH}/switch_integers.cpp
+	${KS_PATH}/switch_multi_bool_ops.cpp
 	${KS_PATH}/nav_root.cpp
 	${KS_PATH}/nav_parent.cpp
 	${KS_PATH}/nav_parent2.cpp
@@ -159,6 +168,9 @@ set(KS_SOURCES
 	${KS_PATH}/optional_id.cpp
 	${KS_PATH}/opaque_external_type_02_parent.cpp
 	${KS_PATH}/opaque_external_type_02_child.cpp
+	${KS_PATH}/non_standard.cpp
+	${KS_PATH}/debug_0.cpp
+	${KS_PATH}/debug_enum_name.cpp
 )
 
 set(RUNTIME_SOURCES
