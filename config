@@ -1,7 +1,7 @@
 COMPILER_DIR=../../../compiler/master/src
 FORMATS_KSY_DIR=formats
 FORMATS_COMPILED_DIR=compiled
-FORMATS_REPO_DIR=../formats
+FORMATS_REPO_DIR="/C/Program Files (x86)/kaitai_struct/formats"
 
 CSHARP_RUNTIME_DIR=../runtime/csharp
 JAVA_RUNTIME_DIR=../../../runtime/master/src
