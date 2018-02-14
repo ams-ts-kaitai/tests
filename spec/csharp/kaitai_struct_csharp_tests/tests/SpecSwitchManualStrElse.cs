@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using System;
 
 namespace Kaitai
 {
@@ -22,7 +21,7 @@ namespace Kaitai
             Assert.AreEqual(((SwitchManualStrElse.Opcode.Noneval)r.Opcodes[2].Body).Filler, 0xcafe);
 
             Assert.AreEqual(r.Opcodes[3].Code, "I");
-            Assert.AreEqual(((SwitchManualStrElse.Opcode.Intval)r.Opcodes[3].Body).Value, 7);
+            Assert.AreEqual(((SwitchManualStrElse.Opcode.Strval)r.Opcodes[3].Body).Value, 7);
         }
     }
 }

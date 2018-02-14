@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 
 namespace Kaitai
@@ -7,13 +7,11 @@ namespace Kaitai
     {
         public String SourceFile(string filename)
         {
-            string testPath = Environment.GetEnvironmentVariable("CSHARP_TEST_SRC_PATH");
-            if (testPath == null)
-            {
-                char slash = Path.DirectorySeparatorChar;
-                testPath = ".." + slash + ".." + slash + ".." + slash + "src";
-            }
-            return Path.Combine(testPath, filename);
+            var currentDir = Path.GetDirectoryName(typeof(CommonSpec).Assembly.Location);
+            #if __MonoCS__
+                currentDir = Environment.CurrentDirectory;
+            #endif
+            return Path.Combine(currentDir, "src", filename);
         }
     }
 }
