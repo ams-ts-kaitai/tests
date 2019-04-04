@@ -2,7 +2,6 @@
 
 . ./config
 
-export GOPATH=$HOME/go
 export GOPATH=$GOPATH:$(pwd)/compiled/go
 
 # Symlink Go runtime libraries from full umbrella project checkout
@@ -25,13 +24,18 @@ while [ "$keep_compiling" = 1 ]; do
 	else
 		echo "Got error:"
 		cat "$ABS_REPORT_LOG"
+		if [ -n "$NO_RECOVER" ]; then
+			echo "No recovery requested, bailing out"
+			exit 1
+		fi
 		if egrep "^\.\./\.\./compiled/go/.*:[0-9][0-9]*:" "$ABS_REPORT_LOG" >"$ABS_TEST_OUT_DIR/go/err.now"; then
 			cat "$ABS_TEST_OUT_DIR/go/err.now" >>"$ABS_TEST_OUT_DIR/go/build.fails"
 			sed 's/:.*//' <"$ABS_TEST_OUT_DIR/go/err.now" | sort -u >"$ABS_TEST_OUT_DIR/go/to_delete.now"
 			xargs rm <"$ABS_TEST_OUT_DIR/go/to_delete.now"
-			echo "Trying to recover..."
+			echo "Trying to recover, deleting..."
+			cat "$ABS_TEST_OUT_DIR/go/to_delete.now"
 			keep_compiling=1
-        elif grep -q '^=== RUN' "$ABS_REPORT_LOG"; then
+		elif grep -q '^=== RUN' "$ABS_REPORT_LOG"; then
 			echo "Tests completed partially..."
 			keep_compiling=0
 		else
@@ -43,10 +47,12 @@ while [ "$keep_compiling" = 1 ]; do
 done
 
 cd ../..
-$HOME/go/bin/go-junit-report <"$ABS_TEST_OUT_DIR/go/report.log" >"$ABS_TEST_OUT_DIR/go/report.xml"
+go-junit-report <"$ABS_TEST_OUT_DIR/go/report.log" >"$ABS_TEST_OUT_DIR/go/report.xml"
 
 COUNT_TOTAL=$(grep '^=== RUN' "$ABS_REPORT_LOG" | wc -l)
 COUNT_FAIL=$(grep '^--- FAIL' "$ABS_REPORT_LOG" | wc -l)
 COUNT_PASS=$(grep '^--- PASS' "$ABS_REPORT_LOG" | wc -l)
 
 echo "Totals: $COUNT_TOTAL ran, $COUNT_PASS passed, $COUNT_FAIL failed"
+
+aggregate/convert_to_json go "$TEST_OUT_DIR/go/report.xml" "$TEST_OUT_DIR/go/ci.json"
