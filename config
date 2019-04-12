@@ -1,10 +1,10 @@
-COMPILER_DIR=../../../compiler/ams_bug_2543/src
+COMPILER_DIR=../../../compiler/libs_java_3rd_usage/src
 FORMATS_KSY_DIR=formats
 FORMATS_COMPILED_DIR=compiled
 FORMATS_REPO_DIR="/C/Program Files (x86)/kaitai_struct/formats"
 
 CSHARP_RUNTIME_DIR=../runtime/csharp
-JAVA_RUNTIME_DIR=../../../runtime/ams_bug_2543/src
+JAVA_RUNTIME_DIR=../../../runtime/libs_java_3rd_usage/src
 JAVA_TESTNG_JAR=$HOME/.m2/repository/org/testng/testng/6.9.10/testng-6.9.10.jar:$HOME/.m2/repository/com/beust/jcommander/1.48/jcommander-1.48.jar
 JAVASCRIPT_RUNTIME_DIR="C:\\Program Files (x86)\\kaitai_struct\\runtime\\javascript"
 JAVASCRIPT_MODULES_DIR=node_modules
