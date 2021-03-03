@@ -5,7 +5,7 @@ FORMATS_REPO_DIR=../../../compiler/libs_java_3rd_usage/formats
 
 CSHARP_RUNTIME_DIR=../runtime/csharp
 JAVA_RUNTIME_DIR=../../../runtime/libs_java_3rd_usage/src
-JAVA_TESTNG_JAR=$HOME/.m2/repository/org/testng/testng/6.9.10/testng-6.9.10.jar:${HOME}/.m2/repository/com/beust/jcommander/1.48/jcommander-1.48.jar
+JAVA_TESTNG_JAR=$HOME/.m2/repository/org/testng/testng/6.9.10/testng-6.9.10.jar:$HOME/.m2/repository/com/beust/jcommander/1.48/jcommander-1.48.jar
 JAVASCRIPT_RUNTIME_DIR=../runtime/javascript
 JAVASCRIPT_MODULES_DIR=node_modules
 LUA_RUNTIME_DIR=../runtime/lua
@@ -13,6 +13,6 @@ NIM_RUNTIME_DIR=../runtime/nim
 NIM_TESTIFY_DIR=spec/nim/testify
 PERL_RUNTIME_DIR=../runtime/perl/lib
 PYTHON_RUNTIME_DIR=../runtime/python
-RUBY_RUNTIME_DIR="${HOME}/Documents/Eclipse/Ruby GitHub/kaitai_struct_ruby_runtime/lib"
+RUBY_RUNTIME_DIR="$HOME/Documents/Eclipse/Ruby GitHub/kaitai_struct_ruby_runtime/lib"
 
 TEST_OUT_DIR=test_out
