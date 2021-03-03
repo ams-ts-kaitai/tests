@@ -11,4 +11,6 @@ mkdir -p "$FORMATS_COMPILED_DIR"
 	--java-package io.kaitai.struct.testformats \
 	--php-namespace 'Kaitai\Struct\Tests' \
 	--go-package test_formats \
+	--nim-module "kaitai_struct_nim_runtime" \
+	--nim-opaque "../../tests/spec/nim/opaque/" \
 	"$FORMATS_KSY_DIR"/*.ksy || :

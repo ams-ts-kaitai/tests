@@ -1,11 +1,11 @@
 package io.kaitai.struct.testtranslator.specgenerators
 
-import io.kaitai.struct.datatype.DataType
-import io.kaitai.struct.exprlang.Ast
-import io.kaitai.struct.languages.GoCompiler
-import io.kaitai.struct.testtranslator.{Main, TestAssert, TestSpec}
-import io.kaitai.struct.translators.GoTranslator
-import io.kaitai.struct.{ClassTypeProvider, RuntimeConfig, StringLanguageOutputWriter, Utils}
+import _root_.io.kaitai.struct.datatype.{DataType, KSError}
+import _root_.io.kaitai.struct.exprlang.Ast
+import _root_.io.kaitai.struct.languages.GoCompiler
+import _root_.io.kaitai.struct.testtranslator.{Main, TestAssert, TestSpec}
+import _root_.io.kaitai.struct.translators.GoTranslator
+import _root_.io.kaitai.struct.{ClassTypeProvider, RuntimeConfig, StringLanguageOutputWriter, Utils}
 
 class GoSG(spec: TestSpec, provider: ClassTypeProvider) extends BaseGenerator(spec) {
   /**
@@ -36,6 +36,7 @@ class GoSG(spec: TestSpec, provider: ClassTypeProvider) extends BaseGenerator(sp
 
   override def fileName(name: String): String = s"${name}_test.go"
 
+  importList.add("\"runtime/debug\"")
   importList.add("\"os\"")
   importList.add("\"testing\"")
   importList.add("\"github.com/kaitai-io/kaitai_struct_go_runtime/kaitai\"")
@@ -44,13 +45,40 @@ class GoSG(spec: TestSpec, provider: ClassTypeProvider) extends BaseGenerator(sp
   override def header() = {
     out.puts(s"func Test$className(t *testing.T) {")
     out.inc
+    out.puts("defer func() {")
+    out.inc
+    out.puts("if r := recover(); r != nil {")
+    out.inc
+    out.puts("debug.PrintStack()")
+    out.puts("t.Fatal(\"unexpected panic:\", r)")
+    out.dec
+    out.puts("}")
+    out.dec
+    out.puts("}()")
     out.puts("f, err := os.Open(\"../../src/" + spec.data + "\")")
     fatalCheck()
     out.puts("s := kaitai.NewStream(f)")
     out.puts(s"var r $className")
+  }
+
+  override def runParse(): Unit = {
     out.puts("err = r.Read(s, &r, &r)")
     fatalCheck()
-    out.puts
+  }
+
+  override def runParseExpectError(exception: KSError): Unit = {
+    val errorName = GoCompiler.ksErrorName(exception)
+    out.puts("err = r.Read(s, &r, &r)")
+    out.puts("switch v := err.(type) {")
+    out.puts(s"case ${errorName}:")
+    out.inc
+    out.puts("break")
+    out.dec
+    out.puts("default:")
+    out.inc
+    out.puts("t.Fatalf(\"expected " + errorName + ", got %T\", v)")
+    out.dec
+    out.puts("}")
   }
 
   override def footer() = {
@@ -63,6 +91,13 @@ class GoSG(spec: TestSpec, provider: ClassTypeProvider) extends BaseGenerator(sp
     val expStr = translator.translate(check.expected)
     importList.add("\"github.com/stretchr/testify/assert\"")
     out.puts(s"assert.EqualValues(t, $expStr, $actStr)")
+  }
+
+  override def floatAssert(check: TestAssert): Unit = {
+    val actStr = translateAct(check.actual)
+    val expStr = translator.translate(check.expected)
+    importList.add("\"github.com/stretchr/testify/assert\"")
+    out.puts(s"assert.InDelta(t, $expStr, $actStr, $FLOAT_DELTA)")
   }
 
   def nullAssert(actual: Ast.expr): Unit = {

@@ -2,20 +2,16 @@ require_relative 'test_parser'
 
 require 'rexml/document'
 
-def underscore_to_ucamelcase(s)
-  s.split(/_/).map { |x| x.capitalize }.join
-end
-
 class JUnitXMLParser < TestParser
   def initialize(fn)
     @docs = if not File.exists?(fn)
       []
     elsif File.directory?(fn)
       Dir.glob("#{fn}/*.xml").map { |x|
-        REXML::Document.new(File.read(x))
+        REXML::Document.new(File.read(x).encode('UTF-8', :invalid=>:replace, :replace=>"?"))
       }
     else
-      [REXML::Document.new(File.read(fn))]
+      [REXML::Document.new(File.read(fn).encode('UTF-8', :invalid=>:replace, :replace=>"?"))]
     end
   end
 
@@ -34,6 +30,9 @@ class JUnitXMLParser < TestParser
         elsif name =~ /^Test.*\.test_/
           # Lua output, use classname
           name = tc.attribute('classname').value.gsub(/^Test/, '')
+        elsif name =~ /^t(?!est)(.*?)$/
+          # Nim output
+          name = underscore_to_ucamelcase($1)
         else
           raise "Unable to parse name: \"#{name}\"" unless name =~ /^[Tt]est(.*?)$/
           if $1[0] == '_'
@@ -50,7 +49,7 @@ class JUnitXMLParser < TestParser
           failure = nil
         else
           status = :failed
-          failure_msg = failure_xml.attribute('message')
+          failure_msg = failure_xml.attribute('message') || failure_xml.attribute('type')
           failure_msg = failure_msg.value if failure_msg
           failure = TestResult::Failure.new(
             nil,
